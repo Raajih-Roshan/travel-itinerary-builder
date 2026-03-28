@@ -1,0 +1,50 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Segoe UI", sans-serif; background: #f0f4f8; color: #1a1a2e; }
+.navbar { display: flex; justify-content: space-between; align-items: center; background: #1a1a2e; color: white; padding: 14px 28px; }
+.navbar-brand { font-size: 18px; font-weight: 700; }
+.navbar-right { display: flex; align-items: center; gap: 16px; font-size: 14px; }
+.btn-logout { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.4); padding: 6px 14px; border-radius: 6px; cursor: pointer; }
+.auth-container { min-height: 90vh; display: flex; align-items: center; justify-content: center; }
+.auth-box { background: white; padding: 40px; border-radius: 16px; width: 100%; max-width: 420px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+.auth-box h2 { font-size: 24px; margin-bottom: 6px; }
+.auth-subtitle { color: #666; margin-bottom: 24px; font-size: 14px; }
+.auth-link { margin-top: 16px; font-size: 13px; color: #666; text-align: center; }
+.auth-link a { color: #4f46e5; text-decoration: none; font-weight: 600; }
+input, select { width: 100%; padding: 11px 14px; margin: 7px 0; border: 1.5px solid #e0e0e0; border-radius: 8px; font-size: 14px; outline: none; }
+input:focus, select:focus { border-color: #4f46e5; }
+.btn-primary { width: 100%; padding: 12px; margin-top: 8px; background: #4f46e5; color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; }
+.btn-primary:hover { background: #4338ca; }
+.btn-delete { background: transparent; border: none; color: #e53e3e; font-size: 16px; cursor: pointer; padding: 4px 8px; }
+.btn-back { background: transparent; border: 1.5px solid #ddd; padding: 8px 16px; border-radius: 8px; cursor: pointer; margin-bottom: 20px; font-size: 14px; }
+.error-msg { background: #fff5f5; color: #e53e3e; border: 1px solid #fed7d7; padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; font-size: 14px; }
+.dashboard { max-width: 860px; margin: 32px auto; padding: 0 20px; }
+.dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.dashboard-header .btn-primary { width: auto; padding: 10px 20px; }
+.trip-form { background: white; padding: 20px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.trip-form button { grid-column: span 2; }
+.trips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.trip-card { background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; transition: transform 0.2s; }
+.trip-card:hover { transform: translateY(-3px); }
+.trip-card-body { padding: 20px; cursor: pointer; }
+.trip-card-body h3 { font-size: 17px; margin-bottom: 8px; }
+.trip-card-body p { font-size: 13px; color: #555; margin: 3px 0; }
+.trip-card .btn-delete { width: 100%; padding: 10px; border-top: 1px solid #f0f0f0; border-radius: 0; }
+.empty-state { text-align: center; padding: 48px 20px; color: #888; font-size: 16px; }
+.trip-detail { max-width: 760px; margin: 32px auto; padding: 0 20px; }
+.trip-detail-header { margin-bottom: 24px; }
+.trip-detail-header h2 { font-size: 26px; }
+.add-item-card { background: white; padding: 20px; border-radius: 12px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.add-item-card h3 { margin-bottom: 14px; font-size: 16px; }
+.add-item-form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.add-item-form select { grid-column: span 2; }
+.add-item-form button { grid-column: span 2; }
+.timeline h3 { font-size: 18px; margin-bottom: 16px; }
+.timeline-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px; margin-bottom: 12px; border-radius: 12px; border-left: 4px solid #ccc; background: white; }
+.item-flight { border-left-color: #3b82f6; background: #eff6ff; }
+.item-hotel { border-left-color: #10b981; background: #ecfdf5; }
+.item-activity { border-left-color: #f59e0b; background: #fffbeb; }
+.item-icon { font-size: 22px; min-width: 30px; }
+.item-body { flex: 1; }
+.item-body strong { font-size: 15px; display: block; margin-bottom: 4px; }
+.item-body p { font-size: 13px; color: #555; margin: 2px 0; }
+.item-body small { font-size: 12px; color: #888; }
