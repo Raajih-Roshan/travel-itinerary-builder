@@ -1,66 +1,29 @@
 const router = require('express').Router();
-const auth   = require('../middleware/authMiddleware');
-const Trip   = require('../models/Trip');
+const auth = require('../middleware/authMiddleware');
+const {
+  getAllTrips,
+  getTripById,
+  createTrip,
+  updateTrip,
+  deleteTrip,
+  inviteCollaborator
+} = require('../controllers/tripController');
 
-// GET all trips for logged-in user
-router.get('/', auth, async (req, res) => {
-  try {
-    const trips = await Trip.find({
-      $or: [
-        { owner: req.user.id },
-        { collaborators: req.user.id }
-      ]
-    }).populate('owner collaborators', 'name email');
-    res.json(trips);
-  } catch (err) {
-    res.status(500).json({ msg: err.message });
-  }
-});
+router.get('/',           auth, getAllTrips);
+router.get('/:id',        auth, getTripById);
+router.post('/',          auth, createTrip);
+router.put('/:id',        auth, updateTrip);
+router.delete('/:id',     auth, deleteTrip);
+router.post('/:id/invite', auth, inviteCollaborator);
 
-// GET single trip by ID
-router.get('/:id', auth, async (req, res) => {
+// GET trip summary with item counts
+router.get('/:id/summary', auth, async (req, res) => {
   try {
-    const trip = await Trip.findById(req.params.id)
-      .populate('owner collaborators', 'name email');
-    if (!trip) return res.status(404).json({ msg: 'Trip not found' });
-    res.json(trip);
-  } catch (err) {
-    res.status(500).json({ msg: err.message });
-  }
-});
-
-// POST create new trip
-router.post('/', auth, async (req, res) => {
-  try {
-    const trip = await Trip.create({
-      ...req.body,
-      owner: req.user.id
-    });
-    res.status(201).json(trip);
-  } catch (err) {
-    res.status(500).json({ msg: err.message });
-  }
-});
-
-// PUT update trip
-router.put('/:id', auth, async (req, res) => {
-  try {
-    const trip = await Trip.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
-    res.json(trip);
-  } catch (err) {
-    res.status(500).json({ msg: err.message });
-  }
-});
-
-// DELETE trip
-router.delete('/:id', auth, async (req, res) => {
-  try {
-    await Trip.findByIdAndDelete(req.params.id);
-    res.json({ msg: 'Trip deleted successfully' });
+    const Item = require('../models/Item');
+    const flights    = await Item.countDocuments({ trip: req.params.id, type: 'flight' });
+    const hotels     = await Item.countDocuments({ trip: req.params.id, type: 'hotel' });
+    const activities = await Item.countDocuments({ trip: req.params.id, type: 'activity' });
+    res.json({ flights, hotels, activities, total: flights + hotels + activities });
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }
