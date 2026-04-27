@@ -16,21 +16,13 @@ const ItemSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  date: {
-    type: Date
-  },
-  time: {
-    type: String,
-    default: ''
-  },
-  location: {
-    type: String,
-    default: ''
-  },
-  notes: {
-    type: String,
-    default: ''
-  },
+  date:     { type: Date },
+  time:     { type: String, default: '' },
+  location: { type: String, default: '' },
+  notes:    { type: String, default: '' },
+  cost:     { type: Number, default: 0 },
+  checkIn:  { type: Date },
+  checkOut: { type: Date },
   addedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

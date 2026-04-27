@@ -14,11 +14,11 @@ const TripSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
-  startDate: {
-    type: Date
-  },
-  endDate: {
-    type: Date
+  startDate: { type: Date },
+  endDate:   { type: Date },
+  budget: {
+    type: Number,
+    default: 0
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
